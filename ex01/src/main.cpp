@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 14:21:20 by csakamot          #+#    #+#             */
-/*   Updated: 2024/07/03 23:49:56 by csakamot         ###   ########.fr       */
+/*   Updated: 2024/07/06 18:44:01 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static void draw_terminal_line() {
 	std::cout << std::endl;
 	return ;
 }
-
 
 int main(void) {
   draw_terminal_line();
