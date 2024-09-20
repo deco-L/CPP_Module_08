@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 14:21:20 by csakamot          #+#    #+#             */
-/*   Updated: 2024/07/04 00:01:59 by csakamot         ###   ########.fr       */
+/*   Updated: 2024/09/20 13:34:27 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,28 @@ Span::Span(const Span& obj) : _size(obj._size), _array(obj._size)
 
 const char* Span::arrayOverflowing::what(void) const throw()
 {
-  return ("\e[1;138;5;182mError: The array is overflowing.\e[0m");
+  return ("\e[1;38;5;196mError: The array is overflowing.\e[0m");
 }
 
 const char* Span::invalidArrayIndex::what(void) const throw()
 {
-  return ("\e[1;138;5;182mError: Invalid array index. Array indices must be non-negative.\e[0m");
+  return ("\e[1;38;5;196mError: Invalid array index. Array indices must be non-negative.\e[0m");
 }
 
 void  Span::addNumber(const int& element)
 {
+  if (this->_array.size() >= this->_size)
+    throw Span::arrayOverflowing();
+  if (element < 0)
+    throw Span::invalidArrayIndex();
   this->_array.push_back(element);
+  return ;
+}
+
+void  Span::addNumbers(const std::vector<unsigned int>& array)
+{
+  for (std::vector<unsigned int>::const_iterator it = array.begin(); it != array.end(); it++)
+    this->addNumber(*it);
   return ;
 }
 

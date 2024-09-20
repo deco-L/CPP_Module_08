@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 14:21:20 by csakamot          #+#    #+#             */
-/*   Updated: 2024/07/08 12:56:20 by csakamot         ###   ########.fr       */
+/*   Updated: 2024/09/20 14:23:03 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,19 @@ public:
   MutantStack( const MutantStack& obj );
   ~MutantStack();
 
-  typedef typename std::stack<T>::container_type::iterator iterator;
-  // class iterator : public std::iterator
-  // {
-  // public:
-  //   iterator& operator++( void );
-  //   iterator  operator++( int );
-  //   iterator& operator--( void );
-  //   iterator  operator--( int );
-  //   bool  operator==( iterator other ) const;
-  //   bool  operator!=( iterator other ) const;
-  //   reference operator*( void ) const;
-  // };
+  typedef typename std::stack<T>::container_type::iterator                iterator;
+  typedef typename std::stack<T>::container_type::reverse_iterator        reverse_iterator;
+  typedef typename std::stack<T>::container_type::const_iterator          const_iterator;
+  typedef typename std::stack<T>::container_type::const_reverse_iterator  const_reverse_iterator;
 
   iterator  begin( void );
   iterator  end( void );
+  reverse_iterator  rbegin( void );
+  reverse_iterator  rend( void );
+  const_iterator  begin( void ) const;
+  const_iterator  end( void ) const;
+  const_reverse_iterator  rbegin( void ) const;
+  const_reverse_iterator  rend( void ) const;
 
   MutantStack& operator=( const MutantStack& obj );
 };

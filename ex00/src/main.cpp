@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 14:21:20 by csakamot          #+#    #+#             */
-/*   Updated: 2024/07/03 00:08:55 by csakamot         ###   ########.fr       */
+/*   Updated: 2024/09/20 13:09:53 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,22 @@ int main(void) {
   it = easyfind(array, 3);
   if ( it != array.end() )
   {
-    std::cout << "Element " << element << " found position : "
-              << it - array.begin() << " (counting from zero)"
+    std::cout << "\033[38;5;120mElement " << element << " found position : "
+              << it - array.begin() << " (counting from zero)\033[0m"
               << std::endl;
   }
   else
-    std::cout << "\e[0;138;5;183mElement not found.\e[0m" << std::endl;
+    std::cout << "\e[38;5;196mElement not found.\e[0m" << std::endl;
+  draw_terminal_line();
+  it = easyfind(array, 10);
+  if ( it != array.end() )
+  {
+    std::cout << "\033[38;5;120mElement " << element << " found position : "
+              << it - array.begin() << " (counting from zero)\033[0m"
+              << std::endl;
+  }
+  else
+    std::cout << "\e[38;5;196mElement not found.\e[0m" << std::endl;
   draw_terminal_line();
   return (EXIT_SUCCESS);
 }

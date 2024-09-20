@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 14:21:20 by csakamot          #+#    #+#             */
-/*   Updated: 2024/07/06 18:44:01 by csakamot         ###   ########.fr       */
+/*   Updated: 2024/09/20 13:39:43 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,77 @@ static void draw_terminal_line() {
 }
 
 int main(void) {
-  draw_terminal_line();
-  Span sp = Span(5);
-  sp.addNumber(6);
-  sp.addNumber(3);
-  sp.addNumber(17);
-  sp.addNumber(9);
-  sp.addNumber(11);
-  std::cout << sp.shortestSpan() << std::endl;
-  std::cout << sp.longestSpan() << std::endl;
-  draw_terminal_line();
+  {
+    draw_terminal_line();
+    std::cout << "\033[1;38;5;120m+++++normal case+++++\033[0m" << std::endl;
+    try {
+      Span array = Span(5);
+      array.addNumber(6);
+      array.addNumber(3);
+      array.addNumber(17);
+      array.addNumber(9);
+      array.addNumber(11);
+      std::cout << array.shortestSpan() << std::endl;
+      std::cout << array.longestSpan() << std::endl;
+    }
+    catch(const std::exception& e) {
+      std::cerr << e.what() << '\n';
+    }
+    draw_terminal_line();
+  }
+  {
+    try {
+      Span array(200);
+      for (int i = 0; i < 200; i++) {
+        int element = rand();
+        array.addNumber(element);
+      }
+      std::cout << array.shortestSpan() << std::endl;
+      std::cout << array.longestSpan() << std::endl;
+    }
+    catch(const std::exception& e) {
+      std::cerr << e.what() << '\n';
+    }
+    draw_terminal_line();
+  }
+  {
+    try {
+      std::vector<unsigned int> srcArray(200, 0);
+      Span array(200);
+
+      for (int i = 0; i < 200; i++)
+        srcArray[i] = rand();
+      array.addNumbers(srcArray);
+      std::cout << array.shortestSpan() << std::endl;
+      std::cout << array.longestSpan() << std::endl;
+    }
+    catch(const std::exception& e) {
+      std::cerr << e.what() << '\n';
+    }
+    draw_terminal_line();
+  }
+  {
+    try {
+      std::cout << "\033[1;38;5;120m+++++error case+++++\033[0m" << std::endl;
+      Span array(10);
+      for (int i = 0; i < 12; i++) {
+        array.addNumber(rand());
+      }
+    }
+    catch(const std::exception& e) {
+      std::cerr << e.what() << '\n';
+    }
+    draw_terminal_line();
+    try {
+      Span array(1);
+      for (int i = 0; i < 1; i++) {
+        array.addNumber(-10);
+      }
+    }
+    catch(const std::exception& e) {
+      std::cerr << e.what() << '\n';
+    }
+    draw_terminal_line();
+  }
   return (EXIT_SUCCESS);
 }
